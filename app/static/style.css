@@ -1,0 +1,47 @@
+.bloco {
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    background-color: rgb(147, 170, 233);
+    margin: 0 auto;
+    width: 400px;
+    padding: 0 0 30px 30px;
+    border: 1px solid black;
+    border-radius: 15px;
+    position: relative;
+    top: 150px;
+    }
+
+.header {
+    padding: 20px 10px;
+    background-color: rgb(44, 115, 196);
+    overflow: hidden;
+    width: 440px;
+    margin: 0 auto 0 auto;
+    border-radius: 15px;
+}
+
+.header a {
+    float: right;
+    padding: 0 12px;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    border-radius: 15px;
+    line-height: 25px;
+}
+ 
+.header a:hover {
+    background-color: darkcyan;
+}
+
+.header a.logo {
+    font-size: 25px;
+    font-weight: bold;
+    float: left;
+}
+
+.header-right {
+    float: right;
+}
+
+body {
+    background-color: lightblue;
+}

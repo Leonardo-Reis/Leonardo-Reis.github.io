@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    {% block content %}
+    <div class="header">
+        <header>
+            <a href="http://127.0.0.1:5000/" class="logo">LOGO</a>
+            <div class="header-right">
+                <a href="http://127.0.0.1:5000/">Home</a>
+                <a href="/login">Login</a>
+            </div>
+        </header>
+    </div>
+    <div class="bloco">
+        <h1>Cadastro</h1>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages %}
+                    <p style="width: 150px">{{msg}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <p>Crie sua conta no nosso site!</p>
+        <form method="post" action="#" autocomplete="off">
+            <label>Nome:</label><br>
+            <input type="text" name="nm" required="required"><br>
+            <label>Senha:</label><br>
+            <input type="password" name="pswrd" required="required"><br>
+            <label>Email:</label><br>
+            <input type="email" name="email" required="required"><br>
+            <input type="submit" value="submit">
+        </form>
+    </div>
+    {% endblock %}
+</body>
+</html>

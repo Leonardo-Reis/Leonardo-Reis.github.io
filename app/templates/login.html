@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    {% block content %}
+    <div class="header">
+        <header>
+            <a href="http://127.0.0.1:5000/" class="logo">LOGO</a>
+            <div class="header-right">
+                <a href="http://127.0.0.1:5000/">Home</a>
+                <a href="/login">Login</a>
+            </div>
+        </header>
+    </div>
+    <div class="bloco">
+        <h2>Faça seu login!</h2>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages %}
+                    <p style="width: 150px">{{msg}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form action="#" method="post" autocomplete="off">
+            <label>Nome:</label>
+            <input type="text" name="nm"><br>
+            <label>Senha:</label>
+            <input type="password" name="pswrd"><br>
+            <input type="submit">
+        </form>
+    </div>
+    {% endblock %}
+</body>
+</html>
