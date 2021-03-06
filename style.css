@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: black;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.pergunta {
+    padding: 50px;
+    background-color: aquamarine;
+    border-radius: 10px;
+    width: 250px;
+    display: flex;
+    justify-content: center;
+}
+
+.opcoes {
+    padding: 30px;
+}
+
+.opcoes ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.opcoes ul li {
+    list-style: none;
+    background-color: aquamarine;
+    padding: 15px 100px;
+    margin: 8px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.opcoes ul li:hover {
+    cursor: pointer;
+}
+
+.resultado {
+    display: none;
+}
