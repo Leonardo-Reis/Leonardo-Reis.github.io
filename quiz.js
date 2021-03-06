@@ -23,12 +23,15 @@ for (let opcao of opcoes_html) {
     opcao.addEventListener('click', check)
 
     function check() {
+        resultado = document.querySelector('.resultado')
         if (opcao.textContent == pergunta_harry.resposta) {
-            resultado = document.querySelector('.resultado')
             resultado.style.display = 'block'
+            resultado.style.color = 'green'
             resultado.textContent = 'Certa resposta'
-
+        } else {
+            resultado.style.display = 'block'
+            resultado.style.color = 'red'
+            resultado.textContent = 'Resposta errada'
         }
-
     }
 }
