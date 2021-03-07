@@ -5,21 +5,22 @@ function Pergunta(pergunta, op1, op2, op3, resp) {
 
 }
 
-pergunta_harry = new Pergunta('Quem é o protagonista do filme harry potter?', 'ronie', 'hermione', 'voldemort', 'harry')
-
-pergunta_num_vingadores1 = new Pergunta('Quantos vingadores apareceram no primeiro Avengers?')
+const pergunta_harry           = new Pergunta('Quem é o protagonista do filme harry potter?', 'ronie', 'hermione', 'voldemort', 'harry')
+const pergunta_num_vingadores1 = new Pergunta('Quantos vingadores apareceram no primeiro Avengers?', '4', '5', '7', '6')
 
 perguntas = [pergunta_harry, pergunta_num_vingadores1]
 
+id_pergunta = 0
+
 pergunta_html = document.querySelector('.frase-pergunta')
-pergunta_html.textContent = pergunta_harry.pergunta
+pergunta_html.textContent = perguntas[id_pergunta].pergunta
 
 opcoes_html = document.querySelectorAll('li')
 
 contador = 0
 
 for (let opcao of opcoes_html) {
-    opcao.textContent = pergunta_harry.alternativas[contador]
+    opcao.textContent = perguntas[id_pergunta].alternativas[contador]
     contador++
 }
 
@@ -28,7 +29,7 @@ for (let opcao of opcoes_html) {
 
     function check() {
         resultado = document.querySelector('.resultado')
-        if (opcao.textContent == pergunta_harry.resposta) {
+        if (opcao.textContent == perguntas[id_pergunta].resposta) {
             resultado.style.display = 'block'
             resultado.style.color = 'green'
             resultado.textContent = 'Certa resposta'
