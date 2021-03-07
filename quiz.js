@@ -7,6 +7,10 @@ function Pergunta(pergunta, op1, op2, op3, resp) {
 
 pergunta_harry = new Pergunta('Quem é o protagonista do filme harry potter?', 'ronie', 'hermione', 'voldemort', 'harry')
 
+pergunta_num_vingadores1 = new Pergunta('Quantos vingadores apareceram no primeiro Avengers?')
+
+perguntas = [pergunta_harry, pergunta_num_vingadores1]
+
 pergunta_html = document.querySelector('.frase-pergunta')
 pergunta_html.textContent = pergunta_harry.pergunta
 
