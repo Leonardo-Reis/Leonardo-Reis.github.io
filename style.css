@@ -26,6 +26,10 @@ header {
     justify-content: center;
 }
 
+header img {
+    height: 100%;
+}
+
 .box {
     display: flex;
     flex-direction: column;
