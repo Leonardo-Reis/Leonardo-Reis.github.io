@@ -35,6 +35,7 @@ header img {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 50px;
 }
 
 .pergunta {
@@ -42,8 +43,13 @@ header img {
     background-color: rgb(255, 77, 77);
     border-radius: 10px;
     width: 250px;
-    display: flex;
-    justify-content: center;
+    height: 130px;
+    position: relative;
+}
+
+.pergunta p {
+    position: absolute;
+    top: 20%;
 }
 
 .frase-pergunta {
@@ -65,7 +71,8 @@ header img {
 .opcoes ul li {
     list-style: none;
     background-color: rgb(255, 124, 124);
-    padding: 15px 100px;
+    padding: 10px;
+    width: 250px;
     margin: 8px;
     border-radius: 10px;
     text-align: center;
