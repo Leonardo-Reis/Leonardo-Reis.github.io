@@ -73,3 +73,4 @@ function imprimir_a_pergunta(pergunta_escolhida) {
     frase_pergunta_html = document.querySelector('.frase-pergunta')
     frase_pergunta_html.textContent = pergunta_escolhida.pergunta
 }
+
