@@ -30,7 +30,7 @@ function rodar_pergunta(id=0) {
         opcao.addEventListener('click', check)
 
         function check() {
-            resultado = document.querySelector('.resultado')
+            var resultado = document.querySelector('.resultado')
             if (opcao.textContent === pergunta_escolhida.resposta) {
                 resultado.style.display = 'block'
                 resultado.style.color = 'green'
@@ -46,11 +46,26 @@ function rodar_pergunta(id=0) {
 
 rodar_pergunta()
 
-const botao_proximo = document.querySelector('.botao-proximo')
+const botao_proximo  = document.querySelector('.botao-proximo')
+const botao_anterior = document.querySelector('.botao-anterior')
+
 var contador_id = 0 
-botao_proximo.addEventListener('click', function() {
-    contador_id++
+botao_proximo.addEventListener('click', () => {
+    if (contador_id < perguntas.length - 1) {  
+      contador_id++
+    }
     rodar_pergunta(contador_id)
+    var resultado = document.querySelector('.resultado')
+    resultado.style.display = 'none'
+})
+
+botao_anterior.addEventListener('click', () => {
+    if (contador_id > 0) {
+        contador_id--
+    }
+    rodar_pergunta(contador_id)
+    var resultado = document.querySelector('.resultado')
+
     resultado.style.display = 'none'
 })
 

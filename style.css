@@ -45,11 +45,14 @@ header img {
     width: 250px;
     height: 130px;
     position: relative;
+    transition: 0.5s;
 }
 
 .pergunta p {
     position: absolute;
     top: 20%;
+    right: 0;
+    text-align: center;
 }
 
 .frase-pergunta {
@@ -76,6 +79,7 @@ header img {
     margin: 8px;
     border-radius: 10px;
     text-align: center;
+    transition: 0.5s;
 }
 
 .opcoes ul li:hover {
@@ -95,4 +99,12 @@ header img {
     position: absolute;
     right: 10%;
     cursor: pointer;
+}
+
+.botao-anterior a svg {
+    width: 80px;
+    position: absolute;
+    left: 10%;
+    cursor: pointer;
+    transform: rotate(180deg);
 }
