@@ -25,10 +25,12 @@ const quiz = {
     init: function (contador_id=0) {
         this.imprimir_pergunta(contador_id)
         this.imprimir_alternativas(contador_id) 
+        this.setar_aparição_das_setas(contador_id)
 
         if (this.contador_rodadas === 0) {
             this.adicionar_listeners_setas()
         }
+
 
         this.contador_rodadas++
     },
@@ -50,6 +52,19 @@ const quiz = {
             this.init(this.contador_id)
         })
 
+    },
+
+    setar_aparição_das_setas: function (contador_id) {
+        if (contador_id == 0) {
+            this.botao_anterior.style.display = 'none'
+        } else {
+            this.botao_anterior.style.display = 'block'
+        }
+        if (contador_id == this.perguntas.length - 1) {
+            this.botao_proximo.style.display = 'none'
+        } else {
+            this.botao_proximo.style.display = 'block'
+        }
     },
 
     imprimir_alternativas: function (id=0) {
