@@ -41,6 +41,8 @@ const quiz = {
                 this.contador_id++
             }
 
+            this.resultado.style.display = 'none'
+
             this.init(this.contador_id)
         })
 
@@ -48,6 +50,8 @@ const quiz = {
             if (this.contador_id > 0) {
                 this.contador_id--
             }
+
+            this.resultado.style.display = 'none'
 
             this.init(this.contador_id)
         })
