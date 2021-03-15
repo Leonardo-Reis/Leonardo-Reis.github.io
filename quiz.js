@@ -21,20 +21,15 @@ var botao_anterior = document.querySelector('.botao-anterior')
 
 var contador_id = 0
 
-
 function rodar_pergunta(id=0) {
     const pergunta_escolhida = id_pergunta_a_escolher(id)
     imprimir_a_pergunta(pergunta_escolhida)
 
     var opcoes_html = document.querySelectorAll('li')
 
-    var contador_alternativas = 0
-    for (let opcao of opcoes_html) {
-        opcao.textContent = pergunta_escolhida.alternativas[contador_alternativas]
-        contador_alternativas++
-    }
+    opcoes_html.forEach((opcao, contador_alternativas=0) => {opcao.textContent = pergunta_escolhida.alternativas[contador_alternativas++]})
 
-    for (let opcao of opcoes_html) {
+    opcoes_html.forEach((opcao) => {
         opcao.addEventListener('click', check)
 
         function check() {
@@ -49,7 +44,7 @@ function rodar_pergunta(id=0) {
                 resultado.textContent = 'Resposta errada'
             }
         }
-    } 
+    })
 
     if (contador_id == 0) {
         botao_anterior.style.display = 'none'
@@ -66,7 +61,7 @@ function rodar_pergunta(id=0) {
 
 rodar_pergunta()
 
-contador_id = 0 
+var contador_id = 0 
 
 botao_proximo.addEventListener('click', () => {
     contador_id++
