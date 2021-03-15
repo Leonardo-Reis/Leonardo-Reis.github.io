@@ -3,7 +3,7 @@ function Pergunta (pergunta, op1, op2, op3, resp) {
     this.resposta   = resp
     this.pergunta   = pergunta
     this.respondida = false
-    this.escolhida  = ''
+    this.escolhida
 }
 
 const pergunta_num_vingadores1 = new Pergunta('Quantos vingadores apareceram no primeiro Avengers?', '4', '5', '7', '6')
@@ -26,6 +26,7 @@ const quiz = {
         this.imprimir_pergunta(contador_id)
         this.imprimir_alternativas(contador_id) 
         this.setar_aparição_das_setas(contador_id)
+        this.setar_funcionamento_respostas(contador_id)
 
         if (this.contador_rodadas === 0) {
             this.adicionar_listeners_setas()
@@ -44,6 +45,8 @@ const quiz = {
             this.resultado.style.display = 'none'
 
             this.init(this.contador_id)
+
+            this.opcoes_html.forEach( (opcao) => {opcao.style.background = 'rgb(255, 124, 124)'})
         })
 
         this.botao_anterior.addEventListener('click', () => {
@@ -71,18 +74,14 @@ const quiz = {
         }
     },
 
-    imprimir_alternativas: function (id=0) {
-        this.opcoes_html.forEach((opcao, id_alternativa=0) => {
-            let pergunta_atual = this.perguntas[id]
-
-            opcao.textContent = pergunta_atual.alternativas[id_alternativa]
-
+    setar_funcionamento_respostas: function (id=0) {
+        this.opcoes_html.forEach( (opcao) => {
             opcao.addEventListener('click', () => {
-                pergunta_atual.respondida = true
-
+                let pergunta_atual = this.perguntas[id]
+                
                 pergunta_atual.escolhida = opcao
-
                 this.resultado.style.display = 'block'
+
                 if (pergunta_atual.escolhida.textContent == pergunta_atual.resposta) {
                     this.resultado.textContent = 'Resposta certa!'
                     this.resultado.style.color = 'green'
@@ -90,7 +89,22 @@ const quiz = {
                     this.resultado.textContent = 'Resposta errada...'
                     this.resultado.style.color = 'red'
                 }
+                //Cor do fundo da escolhida
+                if (opcao.textContent === pergunta_atual.escolhida.textContent && pergunta_atual.respondida === false) {
+                    opcao.style.background = 'lightgreen'
+                }
+
+                pergunta_atual.respondida = true
             })
+
+        })
+    },
+
+    imprimir_alternativas: function (id=0) {
+        this.opcoes_html.forEach((opcao, id_alternativa=0) => {
+            let pergunta_atual = this.perguntas[id]
+            
+            opcao.textContent = pergunta_atual.alternativas[id_alternativa]
         })
     },
 
