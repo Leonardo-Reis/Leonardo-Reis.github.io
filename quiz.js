@@ -11,9 +11,10 @@ const pergunta_num_vingadores1 = new Pergunta('Quantos vingadores apareceram no 
 const pergunta_vilao1          = new Pergunta('Qual é o nome do vilão do primeiro Avengers?', 'Thanos', 'Zemo', 'Ultron', 'Loki')
 const pergunta_vilao2          = new Pergunta('Qual é o nome do vilão do segundo Avengers?', 'Thanos', 'Zemo', 'Loki', 'Ultron')
 const pergunta_strongest       = new Pergunta('Quem é o vingador mais forte de acordo com Tony Stark?', 'Thor', 'Capitão América', 'Homem de Ferro', 'Hulk')
+const pergunta_gaviao          = new Pergunta('Qual é o nome original do Gavião Arqueiro?', 'Steve', 'Jeremy', 'Nathanael', 'Clint')
 
 const quiz = {
-    perguntas: [pergunta_num_vingadores1, pergunta_vilao1, pergunta_vilao2, pergunta_strongest],
+    perguntas: [pergunta_num_vingadores1, pergunta_vilao1, pergunta_vilao2, pergunta_strongest, pergunta_gaviao],
 
     opcoes_html: document.querySelectorAll('li'),
     resultado: document.querySelector('.resultado'),
@@ -149,9 +150,9 @@ const quiz = {
         })
     },
 
-    imprimir_pergunta: function (id=0) {
+    imprimir_pergunta: function () {
         frase_pergunta_html = document.querySelector('.frase-pergunta')
         
         frase_pergunta_html.textContent = this.pergunta_atual().pergunta
-    },
+    }
 }
