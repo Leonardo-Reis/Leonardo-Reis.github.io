@@ -7,7 +7,7 @@ function Pergunta (pergunta, op1, op2, op3, resp) {
     this.acertou
 }
 
-const pergunta_num_vingadores1 = new Pergunta('Quantos vingadores apareceram no primeiro Avengers?', '4', '5', '7', '6')
+const pergunta_num_vingadores1 = new Pergunta('Quantos vingadores apareceram no primeiro Avengers?', '5', '4', '7', '6')
 const pergunta_vilao1          = new Pergunta('Qual é o nome do vilão do primeiro Avengers?', 'Thanos', 'Zemo', 'Ultron', 'Loki')
 const pergunta_vilao2          = new Pergunta('Qual é o nome do vilão do segundo Avengers?', 'Thanos', 'Zemo', 'Loki', 'Ultron')
 const pergunta_strongest       = new Pergunta('Quem é o vingador mais forte de acordo com Tony Stark?', 'Thor', 'Capitão América', 'Homem de Ferro', 'Hulk')
@@ -23,6 +23,7 @@ const quiz = {
     contador_id: 0,
     contador_rodadas: 0,
 
+
     pergunta_atual: function () {return this.perguntas[this.contador_id]},
 
     init: function (contador_id=0) {
@@ -36,8 +37,6 @@ const quiz = {
             this.adicionar_listeners_setas()
         }
         
-
-
         this.contador_rodadas++
     },
 
@@ -50,8 +49,6 @@ const quiz = {
             this.resultado.style.display = 'none'
 
             this.init(this.contador_id)
-
-            //this.opcoes_html.forEach( (opcao) => {opcao.style.background = 'rgb(255, 124, 124)'})
         })
 
         this.botao_anterior.addEventListener('click', () => {
@@ -62,10 +59,7 @@ const quiz = {
             this.resultado.style.display = 'none'
 
             this.init(this.contador_id)
-
-            //this.opcoes_html.forEach( (opcao) => {opcao.style.background = 'rgb(255, 124, 124)'})
         })
-
     },
 
     setar_aparição_das_setas: function (contador_id) {
@@ -81,7 +75,7 @@ const quiz = {
         }
     },
 
-    setar_funcionamento_respostas: function (id=0) {
+    setar_funcionamento_respostas: function () {
         this.opcoes_html.forEach( (opcao, id_alternativa=0) => {
             opcao.addEventListener('click', () => {
                 
@@ -89,17 +83,19 @@ const quiz = {
                 this.resultado.style.display = 'block'
 
                 if (this.pergunta_atual().escolhida.textContent === this.pergunta_atual().resposta && this.pergunta_atual().respondida === false) {
-                    this.resultado.textContent = 'Resposta certa!'
-                    this.resultado.style.color = 'green'
-                    this.pergunta_atual().acertou     = true
+                    this.resultado.textContent    = 'Resposta certa!'
+                    this.resultado.style.color    = 'green'
+                    this.pergunta_atual().acertou = true
                 } else if (this.pergunta_atual().escolhida.textContent !== this.pergunta_atual().resposta && this.pergunta_atual().respondida === false) {
-                    this.resultado.textContent = 'Resposta errada...'
-                    this.resultado.style.color = 'red'
-                    this.pergunta_atual().acertou     = false
+                    this.resultado.textContent    = 'Resposta errada...'
+                    this.resultado.style.color    = 'red'
+                    this.pergunta_atual().acertou = false
                 }
                 //Cor do fundo da escolhida
                 if (this.pergunta_atual().acertou === true && this.pergunta_atual().respondida === false) {
-                    opcao.style.background = 'lightgreen'
+                    this.pergunta_atual().escolhida.style.background = 'lightgreen'
+                } else if (this.pergunta_atual().respondida === false && this.pergunta_atual().acertou === false) {
+                    this.pergunta_atual().escolhida.style.background = 'red'
                 }
 
                 this.pergunta_atual().respondida = true
@@ -107,13 +103,13 @@ const quiz = {
         })
     },
 
-    imprimir_cor_alternativas: function (id=0) {
+    imprimir_cor_alternativas: function () {
         this.opcoes_html.forEach( (opcao) => {
             opcao.style.background = 'rgb(255, 124, 124)'
         })
     },
 
-    imprimir_alternativas: function (id=0) {
+    imprimir_alternativas: function () {
         this.opcoes_html.forEach((opcao, id_alternativa=0) => {
             
             opcao.textContent = this.pergunta_atual().alternativas[id_alternativa]
@@ -124,10 +120,12 @@ const quiz = {
                 this.resultado.style.color   = 'green'
 
                 this.pergunta_atual().escolhida.style.background = 'lightgreen'
-            } else if (this.respondida === true && this.pergunta_atual().acertou === false) {
+            } else if (this.pergunta_atual().respondida === true && this.pergunta_atual().acertou === false) {
                 this.resultado.style.display = 'block'
                 this.resultado.textContent   = 'Resposta errada...'
                 this.resultado.style.color   = 'red'
+
+                this.pergunta_atual().escolhida.style.background = 'red'
             } else if (this.pergunta_atual().respondida === false) {
                 this.resultado.style.display = 'none'
             }
