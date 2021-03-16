@@ -23,8 +23,11 @@ const quiz = {
     contador_id: 0,
     contador_rodadas: 0,
 
+    pergunta_atual: function () {return this.perguntas[this.contador_id]},
+
     init: function (contador_id=0) {
         this.imprimir_pergunta(contador_id)
+        this.imprimir_cor_alternativas(contador_id)
         this.imprimir_alternativas(contador_id) 
         this.setar_aparição_das_setas(contador_id)
         this.setar_funcionamento_respostas(contador_id)
@@ -34,7 +37,6 @@ const quiz = {
         }
         
 
-        this.imprimir_cor_respondida(contador_id)
 
         this.contador_rodadas++
     },
@@ -82,55 +84,51 @@ const quiz = {
     setar_funcionamento_respostas: function (id=0) {
         this.opcoes_html.forEach( (opcao, id_alternativa=0) => {
             opcao.addEventListener('click', () => {
-                let pergunta_atual = this.perguntas[id]
                 
-                pergunta_atual.escolhida = this.opcoes_html[id_alternativa]
+                this.pergunta_atual().escolhida = this.opcoes_html[id_alternativa]
                 this.resultado.style.display = 'block'
 
-                if (pergunta_atual.escolhida.textContent === pergunta_atual.resposta && pergunta_atual.respondida === false) {
+                if (this.pergunta_atual().escolhida.textContent === this.pergunta_atual().resposta && this.pergunta_atual().respondida === false) {
                     this.resultado.textContent = 'Resposta certa!'
                     this.resultado.style.color = 'green'
-                    pergunta_atual.acertou     = true
-                } else if (pergunta_atual.escolhida.textContent !== pergunta_atual.resposta && pergunta_atual.respondida === false) {
+                    this.pergunta_atual().acertou     = true
+                } else if (this.pergunta_atual().escolhida.textContent !== this.pergunta_atual().resposta && this.pergunta_atual().respondida === false) {
                     this.resultado.textContent = 'Resposta errada...'
                     this.resultado.style.color = 'red'
-                    pergunta_atual.acertou     = false
+                    this.pergunta_atual().acertou     = false
                 }
                 //Cor do fundo da escolhida
-                if (pergunta_atual.acertou === true && pergunta_atual.respondida === false) {
+                if (this.pergunta_atual().acertou === true && this.pergunta_atual().respondida === false) {
                     opcao.style.background = 'lightgreen'
                 }
 
-                pergunta_atual.respondida = true
+                this.pergunta_atual().respondida = true
             })
         })
     },
 
-    imprimir_cor_respondida: function (id=0) {
+    imprimir_cor_alternativas: function (id=0) {
         this.opcoes_html.forEach( (opcao) => {
-            let pergunta_atual = this.perguntas[id]
-
             opcao.style.background = 'rgb(255, 124, 124)'
         })
     },
 
     imprimir_alternativas: function (id=0) {
         this.opcoes_html.forEach((opcao, id_alternativa=0) => {
-            let pergunta_atual = this.perguntas[id]
             
-            opcao.textContent = pergunta_atual.alternativas[id_alternativa]
+            opcao.textContent = this.pergunta_atual().alternativas[id_alternativa]
 
-            if (pergunta_atual.respondida === true && pergunta_atual.acertou === true) {
+            if (this.pergunta_atual().respondida === true && this.pergunta_atual().acertou === true) {
                 this.resultado.style.display = 'block'
                 this.resultado.textContent   = 'Resposta certa!'
-                this.resultado.style.color   = 'green'
+                this.resultado.style.color   = 'yellow'
 
-                pergunta_atual.escolhida.style.background = 'lightgreen'
-            } else if (pergunta_atual.respondida === true && pergunta_atual.acertou === false) {
+                this.pergunta_atual().escolhida.style.background = 'lightgreen'
+            } else if (this.respondida === true && this.pergunta_atual().acertou === false) {
                 this.resultado.style.display = 'block'
                 this.resultado.textContent   = 'Resposta errada...'
                 this.resultado.style.color   = 'red'
-            } else if (pergunta_atual.respondida === false) {
+            } else if (this.pergunta_atual().respondida === false) {
                 this.resultado.style.display = 'none'
             }
         })
@@ -139,8 +137,6 @@ const quiz = {
     imprimir_pergunta: function (id=0) {
         frase_pergunta_html = document.querySelector('.frase-pergunta')
         
-        frase_pergunta_html.textContent = this.perguntas[id].pergunta
+        frase_pergunta_html.textContent = this.pergunta_atual().pergunta
     },
 }
-
-//O bug de todas as perguntas anteriores receberem respondida como true provavelmente está acontenco porque a variavel "pergunta atual" foi declarada dentro dos .forEach(), cria uma propriedade chamada pergunta_atual que receba perguntas[contador_id] juntos com as declarações das propriedades no inicio do objeto quiz.
