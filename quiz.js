@@ -80,14 +80,14 @@ const quiz = {
 
     setar_aparição_das_setas: function (contador_id) {
         if (contador_id == 0) {
-            this.botao_anterior.style.display = 'none'
+            this.botao_anterior.style.visibility = 'hidden'
         } else {
-            this.botao_anterior.style.display = 'block'
+            this.botao_anterior.style.visibility = 'visible'
         }
         if (contador_id == this.perguntas.length - 1) {
-            this.botao_proximo.style.display = 'none'
+            this.botao_proximo.style.visibility = 'hidden'
         } else {
-            this.botao_proximo.style.display = 'block'
+            this.botao_proximo.style.visibility = 'visible'
         }
     },
 
