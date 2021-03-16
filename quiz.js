@@ -121,7 +121,7 @@ const quiz = {
             if (this.pergunta_atual().respondida === true && this.pergunta_atual().acertou === true) {
                 this.resultado.style.display = 'block'
                 this.resultado.textContent   = 'Resposta certa!'
-                this.resultado.style.color   = 'yellow'
+                this.resultado.style.color   = 'green'
 
                 this.pergunta_atual().escolhida.style.background = 'lightgreen'
             } else if (this.respondida === true && this.pergunta_atual().acertou === false) {
