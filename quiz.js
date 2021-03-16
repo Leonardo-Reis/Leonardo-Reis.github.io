@@ -19,25 +19,41 @@ const quiz = {
     resultado: document.querySelector('.resultado'),
     botao_proximo: document.querySelector('.botao-proximo'),
     botao_anterior: document.querySelector('.botao-anterior'),
+    contador_acertos: document.querySelector('.contador'),
 
     contador_id: 0,
     contador_rodadas: 0,
-
+    numero_de_acertos: 0,
 
     pergunta_atual: function () {return this.perguntas[this.contador_id]},
-
+    
     init: function (contador_id=0) {
         this.imprimir_pergunta(contador_id)
         this.imprimir_cor_alternativas(contador_id)
         this.imprimir_alternativas(contador_id) 
         this.setar_aparição_das_setas(contador_id)
         this.setar_funcionamento_respostas(contador_id)
+        this.setar_contador_acertos()
         
         if (this.contador_rodadas === 0) {
             this.adicionar_listeners_setas()
         }
         
         this.contador_rodadas++
+    },
+
+    contar_numero_de_acertos: function () {
+        let num_de_acertos = this.numero_de_acertos
+        this.perguntas.forEach( (pergunta) => {
+            if (pergunta.acertou === true) {
+                num_de_acertos += 1
+            }
+        })
+        return num_de_acertos
+    },
+
+    setar_contador_acertos: function () {
+        this.contador_acertos.textContent = this.contar_numero_de_acertos() + '/' + this.perguntas.length
     },
 
     adicionar_listeners_setas: function () {
@@ -99,6 +115,7 @@ const quiz = {
                 }
 
                 this.pergunta_atual().respondida = true
+                this.setar_contador_acertos()
             })
         })
     },
